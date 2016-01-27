@@ -1,0 +1,17 @@
+print("TESTCASE: convert bpmn_with_dataobjects.xpdl to Petri net (control-flow)");
+
+String testFileRoot = System.getProperty("user.dir") + "/tests/testfiles";
+
+// --- load model
+String modelFile = "bpmn_with_dataobjects.xpdl";
+System.out.println("loading "+ modelFile);
+bpmn_diagram = import_bpmn_model_from_xpdl_2_2_file(testFileRoot+"/"+modelFile);
+
+// --- call analysis
+System.out.println("calling translation to PN (control-flow)");
+pn_marking = convert_bpmn_diagram_to_petri_net_control_flow_(bpmn_diagram);
+
+if(pn_marking[0] != null)
+	print("Non è nulla");
+else 
+	printf("Si");

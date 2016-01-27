@@ -1,0 +1,17 @@
+print("TESTCASE: convert withLanes.bpmn to Petri net (control-flow)");
+
+String testFileRoot = System.getProperty("user.dir") + "/tests/testfiles";
+
+// --- load model
+String modelFile = "withLanes.bpmn";
+System.out.println("loading "+ modelFile);
+bpmn = import_bpmn_model_from_bpmn_2_0_file(testFileRoot + "/" + modelFile);
+bpmn_diagram = select_bpmn_diagram(bpmn);
+
+// --- call analysis
+System.out.println("calling translation to PN (control-flow)");
+pn_marking = convert_bpmn_diagram_to_petri_net_control_flow_(bpmn_diagram);
+
+// --- export file pnml
+File export = new File(testFileRoot + "/prova.pnml");
+epnml_export_petri_net_(pn_marking[0], export);

@@ -1,0 +1,12 @@
+print("Starting example script: BPMN to PN...");
+
+String testFileRoot = System.getProperty("user.dir") + "/tests/testfiles";
+
+// --- load model
+String modelFile = "bpmn_with_dataobjects.xpdl";
+String path = testFileRoot + "/" + modelFile;
+print(path);
+bpmn_diagram = import_bpmn_model_from_xpdl_2_2_file(path);
+
+// --- convert model to PN
+pn_marking = convert_bpmn_diagram_to_data_petri_net(bpmn_diagram);
